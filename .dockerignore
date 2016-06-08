@@ -1,0 +1,6 @@
+.cache
+docker-workflow-plugin
+blueocean-plugin
+docker-jenkins-dind
+dind
+data
