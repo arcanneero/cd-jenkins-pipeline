@@ -1,0 +1,44 @@
+version: "2"
+
+services:
+ jenkins:
+  build: .
+  image: jenkins-dind
+  ports:
+   - "8080:8080"
+   - "50000:50000"
+   - "8081:8081"
+   - "8022:22"
+  privileged: true
+  volumes:
+   - ../data/cd/jenkins:/var/jenkins_home
+   
+ mysql:
+  image: mysql:5.7.12
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_ROOT_PASSWORD=sonar
+   - MYSQL_DATABASE=sonar
+   - MYSQL_USER=sonar
+   - MYSQL_PASSWORD=sonar
+  volumes:
+   - ../data/cd/mysql-sonar:/var/lib/mysql
+   
+ sonarqube:
+  image: sonarqube:5.5
+  ports:
+   - "9000:9000"
+  links:
+   - mysql-sonar:db
+  depends_on:
+   - mysql-sonar
+  environment:
+   - SONARQUBE_JDBC_USERNAME=sonar
+   - SONARQUBE_JDBC_PASSWORD=sonar
+   - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+  volumes:
+   - ../data/cd/sonarqube/data:/opt/sonarqube/data
+   - ../data/cd/sonarqube/extensions:/opt/sonarqube/extensions
+   - ../data/cd/sonarqube/conf:/opt/sonarqube/conf
+   - ../data/cd/sonarqube/logs:/opt/sonarqube/logs
