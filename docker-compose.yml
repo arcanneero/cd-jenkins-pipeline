@@ -30,9 +30,9 @@ services:
   ports:
    - "9000:9000"
   links:
-   - mysql-sonar:db
+   - mysql:db
   depends_on:
-   - mysql-sonar
+   - mysql
   environment:
    - SONARQUBE_JDBC_USERNAME=sonar
    - SONARQUBE_JDBC_PASSWORD=sonar
