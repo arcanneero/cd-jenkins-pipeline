@@ -12,6 +12,7 @@ services:
   privileged: true
   volumes:
    - ../data/cd/jenkins:/var/jenkins_home
+   - ./JENKINS_HOME:/usr/share/jenkins/ref
    
  mysql:
   image: mysql:5.7.12
