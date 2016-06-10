@@ -4,10 +4,10 @@ services:
  jenkins:
   image: arcanneero/cd-jenkins-pipeline
   ports:
-   - "8080:8080"
+   - "18080:8080"
    - "50000:50000"
-   - "8081:8081"
-   - "8022:22"
+   - "18081:8081"
+   - "18022:22"
   privileged: true
   volumes:
    - ../data/cd/jenkins:/var/jenkins_home
@@ -16,7 +16,7 @@ services:
  mysql:
   image: mysql:5.7.12
   ports:
-   - "3306:3306"
+   - "13306:3306"
   environment:
    - MYSQL_ROOT_PASSWORD=sonar
    - MYSQL_DATABASE=sonar
@@ -28,7 +28,7 @@ services:
  sonarqube:
   image: sonarqube:5.5
   ports:
-   - "9000:9000"
+   - "19000:9000"
   links:
    - mysql:db
   depends_on:
