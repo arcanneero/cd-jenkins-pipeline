@@ -47,6 +47,11 @@ echo '***************         Docker Registry Service running now             **
 rm -rf /usr/share/jenkins/ref/jobs/cd /var/jenkins_home/jobs/cd
 
 #
+# Plgins installation.
+#
+/usr/local/bin/plugins.sh /tmp/files/plugins.txt
+
+#
 # Now run Jenkins.
 #
 #

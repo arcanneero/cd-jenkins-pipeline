@@ -18,6 +18,21 @@ VOLUME /var/lib/docker
 #
 ###############################################################
 
+
+# install Jetty
+WORKDIR /opt
+# jetty package is still 8
+ENV JETTY_VERSION 9.2.12.v20150709
+RUN wget -O - "http://archive.eclipse.org/jetty/$JETTY_VERSION/dist/jetty-distribution-$JETTY_VERSION.tar.gz" | tar xvfz -
+RUN ln -sv jetty-distribution-$JETTY_VERSION jetty
+RUN cd /tmp; ln -s /opt/jetty/webapps
+RUN chown -R jenkins /opt/jetty/logs
+RUN chown -R jenkins /opt/jetty/webapps
+
+COPY run.sh jetty.sh /usr/local/bin/
+RUN chmod a+x /usr/local/bin/run.sh /usr/local/bin/jetty.sh
+
+# Install others éléments
 RUN apt-get update && apt-get install -y apparmor apache2-utils
 
 COPY workflow-reg-proxy.conf /tmp/files/regup/workflow-reg-proxy.conf
