@@ -1,6 +1,3 @@
 .cache
-docker-workflow-plugin
-blueocean-plugin
-docker-jenkins-dind
-dind
+JENKINS_HOME
 data
