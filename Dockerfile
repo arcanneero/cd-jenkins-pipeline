@@ -42,6 +42,7 @@ RUN chmod a+x /usr/local/bin/gen-security-data.sh
 RUN /usr/local/bin/gen-security-data.sh /tmp/files/regup/sec
 
 COPY run-demo.sh /usr/local/bin/run-demo.sh
+RUN chmod a+x /usr/local/bin/run-demo.sh 
 
 COPY plugins.txt /tmp/files/
 RUN /usr/local/bin/plugins.sh /tmp/files/plugins.txt
