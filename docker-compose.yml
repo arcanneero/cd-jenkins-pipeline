@@ -2,8 +2,7 @@ version: "2"
 
 services:
  jenkins:
-  build: .
-  image: jenkins-dind
+  image: arcanneero/cd-jenkins-pipeline
   ports:
    - "8080:8080"
    - "50000:50000"
